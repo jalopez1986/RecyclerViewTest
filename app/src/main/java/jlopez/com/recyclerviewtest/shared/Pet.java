@@ -1,4 +1,7 @@
-package jlopez.com.recyclerviewtest.test1;
+package jlopez.com.recyclerviewtest.shared;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pet {
     private String name;
@@ -24,4 +27,15 @@ public class Pet {
                 ", age=" + age +
                 '}';
     }
+
+    public static List<Pet> dummyData() {
+        List<Pet> pets = new ArrayList<>();
+
+        for(int i=0; i<100; i++) {
+            pets.add(new Pet("Pet " + i, i));
+        }
+
+        return pets;
+    }
+
 }

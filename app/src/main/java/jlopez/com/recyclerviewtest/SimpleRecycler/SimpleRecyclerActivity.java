@@ -1,4 +1,4 @@
-package jlopez.com.recyclerviewtest.test1;
+package jlopez.com.recyclerviewtest.SimpleRecycler;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -12,8 +12,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import jlopez.com.recyclerviewtest.R;
+import jlopez.com.recyclerviewtest.shared.Pet;
 
-public class Test1Activity extends AppCompatActivity {
+public class SimpleRecyclerActivity extends AppCompatActivity {
 
     Button btnAdd;
     Button btnDelete;
@@ -38,14 +39,14 @@ public class Test1Activity extends AppCompatActivity {
         adaptaderRecyclerView = new AdaptaderRecyclerView(new InterfaceClickRecyclerView() {
             @Override
             public void onClick(View v, Pet p) {
-                Toast.makeText(Test1Activity.this, p.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(SimpleRecyclerActivity.this, p.toString(), Toast.LENGTH_LONG).show();
             }
         });
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(Test1Activity.this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SimpleRecyclerActivity.this);
         recyclerViewPets.setLayoutManager(linearLayoutManager);
 
-        recyclerViewPets.addItemDecoration(new DividerItemDecoration(Test1Activity.this, LinearLayoutManager.VERTICAL));
+        recyclerViewPets.addItemDecoration(new DividerItemDecoration(SimpleRecyclerActivity.this, LinearLayoutManager.VERTICAL));
 
         recyclerViewPets.setAdapter(adaptaderRecyclerView);
 
@@ -68,7 +69,7 @@ public class Test1Activity extends AppCompatActivity {
     private void deletePet() {
         String index = editTextIndex.getText().toString();
         if (index.isEmpty()) {
-            Toast.makeText(Test1Activity.this, "Write the index", Toast.LENGTH_LONG).show();
+            Toast.makeText(SimpleRecyclerActivity.this, "Write the index", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -82,7 +83,7 @@ public class Test1Activity extends AppCompatActivity {
         String age = editTextAge.getText().toString();
 
         if (name.isEmpty() || age.isEmpty()) {
-            Toast.makeText(Test1Activity.this, "Fill the fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(SimpleRecyclerActivity.this, "Fill the fields", Toast.LENGTH_LONG).show();
             return;
         }
         adaptaderRecyclerView.addPet(new Pet(name, Integer.valueOf(age)));

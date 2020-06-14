@@ -1,4 +1,4 @@
-package jlopez.com.recyclerviewtest.test1;
+package jlopez.com.recyclerviewtest.SimpleRecycler;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jlopez.com.recyclerviewtest.R;
+import jlopez.com.recyclerviewtest.shared.Pet;
 
 public class AdaptaderRecyclerView extends RecyclerView.Adapter<ViewHolderPet> {
 

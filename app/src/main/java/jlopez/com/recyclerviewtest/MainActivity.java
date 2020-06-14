@@ -7,7 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import jlopez.com.recyclerviewtest.test1.Test1Activity;
+import jlopez.com.recyclerviewtest.CustomRecycler.CustomRecyclerActivity;
+import jlopez.com.recyclerviewtest.SimpleRecycler.SimpleRecyclerActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,18 +17,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btnTest1 = findViewById(R.id.btnTest1);
+        Button btnSimple = findViewById(R.id.btnSimple);
+        Button btnCustom = findViewById(R.id.btnCustom);
 
-        btnTest1.setOnClickListener(new View.OnClickListener() {
+
+        btnSimple.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToTest1Activity();
+                goToSimpleRecyclerActivity();
+            }
+        });
+
+        btnCustom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToCustomRecyclerActivity();
             }
         });
     }
 
-    private void goToTest1Activity() {
-        Intent intent = new Intent(this, Test1Activity.class);
+
+    private void goToSimpleRecyclerActivity() {
+        Intent intent = new Intent(this, SimpleRecyclerActivity.class);
+        startActivity(intent);
+    }
+
+
+    private void goToCustomRecyclerActivity() {
+        Intent intent = new Intent(this, CustomRecyclerActivity.class);
         startActivity(intent);
     }
 }
