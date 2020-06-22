@@ -31,7 +31,7 @@ public class Pet {
     public static List<Pet> dummyData() {
         List<Pet> pets = new ArrayList<>();
 
-        for(int i=0; i<100; i++) {
+        for(int i=0; i<50; i++) {
             pets.add(new Pet("Pet " + i, i));
         }
 

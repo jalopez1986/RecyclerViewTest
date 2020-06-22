@@ -28,6 +28,15 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.SimpleViewHold
         System.out.println("jorge onCreateViewHolder " + viewType );
 
         ViewGroup container = new LinearLayout(parent.getContext());
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+        int margin = (int)(parent.getMeasuredWidth() * 0.05);
+        //params.setMargins(margin,margin,margin,margin);
+        container.setLayoutParams(params);
+
+
+
+        container.getLayoutParams().width = (int)(parent.getMeasuredWidth() / 3);
+
 
         SimpleViewHolder viewHolder = new SimpleViewHolder(container);
 
@@ -44,6 +53,16 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.SimpleViewHold
     }
 
     @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return  position;
+    }
+
+    @Override
     public int getItemCount() {
         return pets.size();
     }
@@ -55,6 +74,8 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.SimpleViewHold
         holder.recycleContainer();
 
     }
+
+
 
     public static class SimpleViewHolder extends RecyclerView.ViewHolder{
         private ViewGroup container;

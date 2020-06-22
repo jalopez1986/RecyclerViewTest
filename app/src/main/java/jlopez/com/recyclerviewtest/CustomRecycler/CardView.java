@@ -24,7 +24,7 @@ public class CardView extends LinearLayout {
 
     public View create(String name, String age) {
         System.out.println("jorge createContainerView");
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         setLayoutParams(params);
         setOrientation(LinearLayout.VERTICAL);
 
