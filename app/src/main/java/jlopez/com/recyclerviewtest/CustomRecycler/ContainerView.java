@@ -89,7 +89,7 @@ public class ContainerView extends ViewGroup  {
 
 
     private RecyclerView createRecyclerView() {
-        recyclerView = new RecyclerView(context);
+        recyclerView = new OneByOneRecyclerView(context);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         AdapterData adapterData = new AdapterData(Pet.dummyData(), context);
         recyclerView.setAdapter(adapterData);
