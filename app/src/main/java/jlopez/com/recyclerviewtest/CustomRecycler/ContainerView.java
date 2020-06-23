@@ -2,25 +2,20 @@ package jlopez.com.recyclerviewtest.CustomRecycler;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.HorizontalScrollView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
-import jlopez.com.recyclerviewtest.R;
 import jlopez.com.recyclerviewtest.shared.Pet;
 
 public class ContainerView extends ViewGroup  {
     Context context;
-    RecyclerView recyclerView;
+    ContainerPanel containerPanel;
+    HorizontalScrollView scrollView;
 
     public ContainerView(Context context) {
         super(context);
@@ -33,16 +28,41 @@ public class ContainerView extends ViewGroup  {
         setLayoutParams(params);
 
         setBackgroundColor(Color.parseColor("#BADBEE"));
+        containerPanel = new ContainerPanel(this.context);
+        int numberOfCards = 2;
+        containerPanel.setNumberOfCard(numberOfCards);
+        createChildren();
 
-        recyclerView = createRecyclerView();
+        scrollView = new CustomHorizontalScroll(this.context);
 
-        addView(recyclerView);
+        scrollView.addView(containerPanel);
+
+
+
+
+        //addView(containerPanel);
+        addView(scrollView);
+    }
+
+    private void createChildren() {
+        int count = 0;
+        for (Pet pet: Pet.dummyData()) {
+            CardView cardView = new CardView(this.context);
+            if (count == 0 || count %2 == 0) {
+                cardView.setBackgroundColor(Color.BLUE);
+            } else {
+                cardView.setBackgroundColor(Color.GRAY);
+            }
+            containerPanel.addView(cardView.create(pet.getName(),String.valueOf(pet.getAge())));
+            count = count + 1;
+        }
     }
 
 
     @Override
     protected void onLayout(boolean b, int i, int i1, int i2, int i3) {
-        recyclerView.layout(0,0, recyclerView.getMeasuredWidth(), recyclerView.getMeasuredHeight());
+        //containerPanel.layout(0,0, containerPanel.getMeasuredWidth(), containerPanel.getMeasuredHeight());
+        scrollView.layout(0,0, scrollView.getMeasuredWidth(), scrollView.getMeasuredHeight());
     }
 
     @Override
@@ -77,25 +97,15 @@ public class ContainerView extends ViewGroup  {
             }
         }
 
-        int recyclerWidthMeasureSpec = MeasureSpec.makeMeasureSpec((int)(width* 0.8), MeasureSpec.EXACTLY);
-        int recyclerHeightMeasureSpec = MeasureSpec.makeMeasureSpec((int)(height* 0.8), MeasureSpec.EXACTLY);
+        int recyclerWidthMeasureSpec = MeasureSpec.makeMeasureSpec((int)(width* 1), MeasureSpec.EXACTLY);
+        int recyclerHeightMeasureSpec = MeasureSpec.makeMeasureSpec((int)(height* 1), MeasureSpec.EXACTLY);
 
-        recyclerView.measure(recyclerWidthMeasureSpec, recyclerHeightMeasureSpec);
+        //containerPanel.measure(recyclerWidthMeasureSpec, recyclerHeightMeasureSpec);
+        scrollView.measure(recyclerWidthMeasureSpec, recyclerHeightMeasureSpec);
 
 
         setMeasuredDimension(width, height);
 
     }
 
-
-    private RecyclerView createRecyclerView() {
-        recyclerView = new OneByOneRecyclerView(context);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        AdapterData adapterData = new AdapterData(Pet.dummyData(), context);
-        recyclerView.setAdapter(adapterData);
-        SnapHelper snapHelper = new LinearSnapHelper();
-        snapHelper.attachToRecyclerView(recyclerView);
-        return recyclerView;
-
-    }
 }
