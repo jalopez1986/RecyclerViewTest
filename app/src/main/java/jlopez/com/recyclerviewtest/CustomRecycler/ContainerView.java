@@ -29,7 +29,7 @@ public class ContainerView extends ViewGroup  {
 
         setBackgroundColor(Color.parseColor("#BADBEE"));
         containerPanel = new ContainerPanel(this.context);
-        int numberOfCards = 2;
+        int numberOfCards = 1;
         containerPanel.setNumberOfCard(numberOfCards);
         createChildren();
 

@@ -43,7 +43,7 @@ public class ContainerPanel extends ViewGroup {
             }
         }
 
-        int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec((int)(width/numberOfCard), MeasureSpec.EXACTLY);
+        int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec((int)(width/(numberOfCard+ 0.1)), MeasureSpec.EXACTLY);
         int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec((int)(height* 1), MeasureSpec.EXACTLY);
 
         for (int i = 0; i < getChildCount(); i++) {

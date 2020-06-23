@@ -3,6 +3,7 @@ package jlopez.com.recyclerviewtest.CustomRecycler;
 import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,7 +16,7 @@ public class CustomHorizontalScroll extends HorizontalScrollView {
     int currentPosition;
     public CustomHorizontalScroll(Context context) {
         super(context);
-        currentPosition = 3;
+        currentPosition = 0;
         setHorizontalScrollBarEnabled(false);
 
 
@@ -80,8 +81,11 @@ public class CustomHorizontalScroll extends HorizontalScrollView {
         if(showOnlyOneCard && event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL ){
 
             System.out.println("Jorgecustom onTouchEvent");
+
+            ContainerPanel containerPanel = ((ContainerPanel)getChildAt(0));
+
             int scrollX = getScrollX();
-            int featureWidth = getMeasuredWidth();
+            int featureWidth = containerPanel.getChildAt(0).getMeasuredWidth();
             int mActiveFeature = ((scrollX + (featureWidth/2))/featureWidth);
             int scrollTo = mActiveFeature*featureWidth;
             smoothScrollTo(scrollTo, 0);
@@ -150,10 +154,10 @@ public class CustomHorizontalScroll extends HorizontalScrollView {
     }
 
     private void setInitialPosition() {
-        showOnlyOneCard = ((ContainerPanel)getChildAt(0)).getNumberOfCard() == 1;
+        ContainerPanel containerPanel = ((ContainerPanel)getChildAt(0));
 
-        int childSize =   this.getMeasuredWidth() / ((ContainerPanel)getChildAt(0)).getNumberOfCard();
-        smoothScrollTo(childSize * currentPosition, 0);
+        int childSize = containerPanel.getChildAt(0).getMeasuredWidth();
+        smoothScrollTo(childSize * (currentPosition), 0);
 
     }
 }
